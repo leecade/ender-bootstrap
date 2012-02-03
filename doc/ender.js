@@ -1053,7 +1053,7 @@
         var value = null
           , computed = doc.defaultView.getComputedStyle(el, '')
         computed && (value = computed[property])
-        return el.style[property] || value
+        return value || el.style[property]
       } :
   
       (ie && html.currentStyle) ?

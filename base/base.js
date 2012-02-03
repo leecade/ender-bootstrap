@@ -3,9 +3,12 @@
   var faker = function (selector) {
         return selector === null || selector === '#' ? $([]) : $.apply(this, arguments)
       }
+    , hasComputedStyle = document.defaultView && document.defaultView.getComputedStyle
     , _$map = $.fn.map
     , _$on = $.fn.on
     , _$trigger = $.fn.trigger
+    , _$height = $.fn.height
+    , _$width = $.fn.width
 
   for (p in $) {
     if (Object.prototype.hasOwnProperty.call($, p))
@@ -35,7 +38,7 @@
           }
           if (copy && copy instanceof Object && typeof copy !== 'function' && !(copy instanceof Array)) {
             clone = src && is.obj(src) ? src : {}
-            target[name] = o.extend(clone, copy)
+            target[name] = faker.extend(clone, copy)
           } else if (copy !== undefined) {
             target[name] = copy
           }
@@ -76,6 +79,27 @@
   // don't handle $().trigger({}) (object parameters)
   $.fn.trigger = function () {
     return typeof arguments[0] == 'string' ? _$trigger.apply(this, arguments) : this
+  }
+  // fix up height() and width() call to use computedStyle where available
+  var hwfn = function(_$fn, type) {
+    return function () {
+      if (arguments.length || !this.length)
+        return _$fn.apply(this, arguments) // normal call
+
+      if (hasComputedStyle) {
+        var computed = document.defaultView.getComputedStyle(this[0], '')
+        if (computed)
+          return computed.getPropertyValue(type)
+      }
+
+      return _$fn.apply(this)
+    }
+  }
+  $.fn.height = hwfn(_$height, 'height')
+  $.fn.width = hwfn(_$width, 'width')
+  // a prev() alias for previous()
+  $.fn.prev = function () {
+    return $.fn.previous.apply(this, arguments)
   }
 
   // lifted from jQuery, modified slightly
