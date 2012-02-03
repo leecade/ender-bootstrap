@@ -53,7 +53,7 @@
       , left: pos.left
       })
 
-      this.$menu.show()
+      this.$menu.show('block')
       this.shown = true
       return this
     }
@@ -116,14 +116,14 @@
   , render: function (items) {
       var that = this
 
-      items = $(items).map(function (i, item) {
+      items = $(items).map(function (item, i) {
         i = $(that.options.item).attr('data-value', item)
         i.find('a').html(that.highlighter(item))
         return i[0]
       })
 
-      items.first().addClass('active')
-      this.$menu.html(items)
+      $(items).first().addClass('active')
+      this.$menu.empty().append(items)
       return this
     }
 
@@ -260,7 +260,7 @@
   * ================== */
 
   $.domReady(function () {
-    $('body').on('focus.typeahead.data-api', '[data-provide="typeahead"]', function (e) {
+    $('[data-provide="typeahead"]').on('focus.typeahead.data-api', function (e) {
       var $this = $(this)
       if ($this.data('typeahead')) return
       e.preventDefault()

@@ -9,6 +9,7 @@
     , _$trigger = $.fn.trigger
     , _$height = $.fn.height
     , _$width = $.fn.width
+    , _$data = $.fn.data
 
   for (p in $) {
     if (Object.prototype.hasOwnProperty.call($, p))
@@ -59,6 +60,15 @@
   faker.proxy = function (fn, ctx) {
     return function () { return fn.apply(ctx, arguments) }
   }
+  // simplified version of jQuery's $.grep
+  faker.grep = function(elems, callback) {
+    var i = 0, l = elems.length, ret = []
+    for (; i < l; i++) {
+      if (!!callback(elems[i], i))
+        ret.push(elems[i])
+    }
+    return ret;
+  }
 
   // fix $().map to handle argument-less functions
   // also the explicit rejection of null values
@@ -100,6 +110,18 @@
   // a prev() alias for previous()
   $.fn.prev = function () {
     return $.fn.previous.apply(this, arguments)
+  }
+  // fix $().data() to handle a JSON array for typeahead's "source"
+  $.fn.data = function () {
+    var d = _$data.apply(this, arguments)
+    if (!arguments.length && typeof d.source == 'string' && /^\[/.test(d.source)) {
+      if (typeof JSON != 'undefined' && JSON.parse) {
+        d.source = JSON.parse(d.source)
+      } else {
+        d.source = d.source.replace(/(^\s*[\s*")|("\s*]\s*$)/g, '').split(/"\s*,\s*"/)
+      }
+    }
+    return d
   }
 
   // lifted from jQuery, modified slightly
