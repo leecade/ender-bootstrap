@@ -94,4 +94,4 @@
       $(e.target).button('toggle')
     })
   })
-}(require('ender-bootstrap-faker'))
+}(require('ender-bootstrap-base'))

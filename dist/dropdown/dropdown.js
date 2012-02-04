@@ -88,4 +88,4 @@
     $('html').on('click.dropdown.data-api', clearMenus)
     $('body').on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
   })
-}(require('ender-bootstrap-faker'))
+}(require('ender-bootstrap-base'))

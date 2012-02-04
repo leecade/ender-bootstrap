@@ -1,5 +1,5 @@
-!(function ($) {
   // make a fake `ender` that can do some things slightly different
+!(function ($) {
   var faker = function (selector) {
         return selector === null || selector === '#' ? $([]) : $.apply(this, arguments)
       }
@@ -164,6 +164,9 @@
     }))
   }
 
-  provide('ender-bootstrap-faker', faker)
+  if (typeof module !== 'undefined') module.exports = faker
+  else if (typeof provide !== 'undefined') provide('ender-bootstrap-base', faker)
+  // else, where are we??
+
 
 }(ender))

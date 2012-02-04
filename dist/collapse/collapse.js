@@ -132,4 +132,4 @@
       $(target).collapse(option)
     })
   })
-}(require('ender-bootstrap-faker'))
+}(require('ender-bootstrap-base'))

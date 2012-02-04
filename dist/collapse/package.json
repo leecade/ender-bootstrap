@@ -1,6 +1,6 @@
 {
   "name": "ender-bootstrap-collapse",
-  "description": "Ender version of Twitter's Bootstrap JS - original by @fat & @mdo",
+  "description": "Ender port of Twitter's Bootstrap JS (Collapse)",
   "url": "https://github.com/rvagg/bootstrap",
   "keywords": [
     "twitter",
@@ -13,10 +13,8 @@
     "Rod Vagg <@rvagg>"
   ],
   "dependencies": {
-    "qwery": "*",
-    "bonzo": "*",
-    "bowser": "*",
-    "domready": "*"
+    "ender-bootstrap-base": "0.0.1",
+    "ender-bootstrap-transition": "0.0.1"
   },
   "main": "collapse.js",
   "version": "0.0.1"

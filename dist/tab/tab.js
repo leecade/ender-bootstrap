@@ -126,4 +126,4 @@
       $(this).tab('show')
     })
   })
-}(require('ender-bootstrap-faker'))
+}(require('ender-bootstrap-base'))

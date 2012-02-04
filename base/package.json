@@ -1,6 +1,6 @@
 {
-  "name": "ender-bootstrap-modal",
-  "description": "Ender port of Twitter's Bootstrap JS (Modal)",
+  "name": "ender-bootstrap-base",
+  "description": "Ender version of Twitter's Bootstrap JS (Base)",
   "url": "https://github.com/rvagg/bootstrap",
   "keywords": [
     "twitter",
@@ -13,9 +13,12 @@
     "Rod Vagg <@rvagg>"
   ],
   "dependencies": {
-    "ender-bootstrap-base": "0.0.1",
-    "ender-bootstrap-transition": "0.0.1"
+    "qwery": "*",
+    "bonzo": "*",
+    "bowser": "*",
+    "domready": "*"
   },
-  "main": "modal.js",
+  "main": "base.js",
+  "ender": "noop",
   "version": "0.0.1"
 }

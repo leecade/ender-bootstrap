@@ -87,4 +87,4 @@
   $.domReady(function () {
     $('body').on('click.alert.data-api', dismiss, Alert.prototype.close)
   })
-}(require('ender-bootstrap-faker'))
+}(require('ender-bootstrap-base'))

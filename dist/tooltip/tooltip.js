@@ -266,4 +266,4 @@
   , title: ''
   , template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
   }
-}(require('ender-bootstrap-faker'))
+}(require('ender-bootstrap-base'))
