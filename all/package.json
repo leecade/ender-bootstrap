@@ -1,0 +1,31 @@
+{
+  "name": "ender-bootstrap",
+  "description": "Ender version of Twitter's Bootstrap JS (all plugins)",
+  "url": "https://github.com/rvagg/bootstrap",
+  "keywords": [
+    "twitter",
+    "bootstrap",
+    "ender"
+  ],
+  "authors": [
+    "Jacob Thornton <@fat>",
+    "Mark Otto <@mdo>",
+    "Rod Vagg <@rvagg>"
+  ],
+  "dependencies": {
+    "ender-bootstrap-base": "0.0.1",
+    "ender-bootstrap-transition": "0.0.1",
+    "ender-bootstrap-alert": "0.0.1",
+    "ender-bootstrap-button": "0.0.1",
+    "ender-bootstrap-carousel": "0.0.1",
+    "ender-bootstrap-collapse": "0.0.1",
+    "ender-bootstrap-dropdown": "0.0.1",
+    "ender-bootstrap-modal": "0.0.1",
+    "ender-bootstrap-popover": "0.0.1",
+    "ender-bootstrap-scrollspy": "0.0.1",
+    "ender-bootstrap-tab": "0.0.1",
+    "ender-bootstrap-tooltip": "0.0.1",
+    "ender-bootstrap-typeahead": "0.0.1"
+  },
+  "version": "0.0.1"
+}

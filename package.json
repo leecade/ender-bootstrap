@@ -1,0 +1,16 @@
+{
+    "name": "ender-bootstrap"
+  , "description": "Build tool for assembling Ender-compatible Bootstrap JS"
+  , "version": "0.0.1"
+  , "homepage": "https://github.com/rvagg/ender-bootstrap"
+  , "author": "Rod Vagg <rod@vagg.org> @rvagg"
+  , "keywords": ["bootstrap", "ender"]
+  , "repository": {
+        "type": "git"
+      , "url": "https://github.com/rvagg/ender-bootstrap.git"
+    }
+  , "devDependencies": {
+        "async": "*"
+      , "colors": "*"
+    }
+}
