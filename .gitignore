@@ -1,2 +1,7 @@
 bootstrap-git/
 node_modules/
+package.json
+lib/
+all/
+README.md
+build
