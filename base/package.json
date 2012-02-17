@@ -15,7 +15,7 @@
   "dependencies": {
     "qwery": "*",
     "bean": ">= 0.4.9"
-    "bonzo": "*",
+    "bonzo-rvagg": "*",
     "bowser": "*",
     "domready": "*"
   },
