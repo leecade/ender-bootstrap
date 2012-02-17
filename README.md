@@ -20,18 +20,12 @@ minified & gzipped, of a jQuery-based Bootstrap install).
 
 ## Current status
 
-This is currently a work-in-progress and there are a couple of important
-blockers that should make you think twice before using this in a
-production environment:
-
- * There are a few outstanding issues with IE7 & 8 that have yet to be
-   addressed, most work so far is plain development using modern
-   browsers.
- * There are some changes to Bonzo that are pending, waiting for
-   [@ded](https://github.com/ded) to find time to review. See
-   [here](https://github.com/ded/bonzo/pull/50) for gory details.
-   This will only prevent a couple off the plugins from working properly
-   though.
+All working but depends on some changes to Bonzo that haven't quite made
+it in yet, so instead you'll have to use the package *bonzo-rvagg* (NPM)
+which is just an updated branch of Bonzo. This is specified as a
+dependency in the base package so will be pulled in each time you `ender
+build`. Differences with the main Bonzo release can be found
+[here](https://github.com/ded/bonzo/pull/50).
 
 ## Using
 
@@ -58,9 +52,11 @@ Which all depend on two base packages:
 
 Or, you can install the lot with the *virtual* package:
 
- * ender-bootstrap
+ * **ender-bootstrap**
 
 ### Installing
+
+#### The *proper* way
 
 Even though the dependencies are set up in the packages, you need to
 specify the required dependencies on the command line when running
@@ -74,3 +70,85 @@ specify the required dependencies on the command line when running
 
  $ ender build qwery bonzo bean domready bowser ender-bootstrap
 ```
+
+#### The *easy* way
+
+If you don't want to roll your own then you can download (or link to) a
+pre-built version which I'll keep updated:
+http://rvagg.github.com/ender-bootstrap/ender-bootstrap.js
+
+This build has all of the Bootstrap plugins installed plus the Ender
+dependencies: Qwery, Bonzo, Bean, domReady and Bowser so you get lots of
+goodness.
+
+### Demo
+
+Of course you want to see it in action! Head over to
+http://rvagg.github.com/ender-bootstrap/ to see it live.
+
+### Building & contributing
+
+If you'd like to contribute (fixes, improvements, whatever) then I'd
+love to hear from you! In this repo you'll find a `build` script, simply
+run it and it'll clone the main Twitter Bootstrap repo (*master*) and
+then munge it to make it work with Ender and assemble the packages ready
+for NPM. The altered files end up in the *dist/* directory but it will
+also fix up the *javascript.html* demo page and associated
+*application.js* and put them into the *doc/* directory.
+
+Sadly there are no tests to go along with this, the jQuery dependencies
+in the QUnit tests mean that it's not a trivial job to fix them up (but
+of course I'd love someone to help make this work!). So testing at this
+stage is largely a matter of using the demo page against the latest
+build across all browsers.
+
+### Important notes for Ender users
+
+**The ender-bootstrap-base package has side-effects that will alter the
+way that some parts of Ender work.** Mostly these are fairly minor and
+are there to make Ender behave more like jQuery in some situations but
+you may need to be aware of them depending on how you use Ender.
+
+Most of the jQueryfication takes place in a private instance of `ender`
+which doesn't leak out, but there are some changes to internal chain
+functions that do leak.
+
+#### Ender side-effects
+
+ * `$().map()` (Bonzo) is modified to accept argument-less callbacks
+   like jQuery. If you feed it a callback with zero-arguments it'll
+   invoke your callback and use `this` as the current element.
+ * `$().on()` (Bean) is modified to behave like jQuery's implementation
+   in some situations. (1) with 3 arguments where the second is not a
+   string (i.e. a 'data' variable), the second argument is stripped out
+   cmpletely, this is not supported by Bean and not required by
+   Bootstrap. (2) with 3 arguments where the second is a string, (i.e. a
+   delegated listener with a selector argument in second place) remap
+   the call to `bean.on()` to put the selector first--Bean will
+   eventually [support this syntax in the future
+   anyway](https://github.com/fat/bean/issues/55) so you probably
+   shouldn't rely on the selector-first style in Bean's `on()`.
+ * `$().trigger()` (Bean) has been modified to prevent it accepting (and
+   throwing an error) on non-string arguments. This means that there are
+   some events that Bootstrap fires that won't see the light of day. If
+   his is important to anyone then file a but report and it can be
+   fixed up.
+ * `$().height()` and `$().width()` (Bonzo) will attempt to use
+   `getComputedStyle()` where it exists (modern browsers) *first* before
+   looking at the style property. Bonzo does the reverse to jQuery and
+   this matters mainly for the collapsable plugin and shouldn't usually
+   matter for most uses because they normally converge to the same value
+   anyway.
+ * `$().prev()` is installed as an alias for `$().previous()` (Bonzo).
+ * `$().data()` (Bonzo) is modified so it can handle JSON arrays, it
+   simply looks at the first character, if it's a `'['` then it'll try
+   `JSON.parse()` (modern browsers) or a naive split. This is required
+   for *typeahead* where you specify the list in a *data-* property.
+ * `$().position()` from jQuery (http://api.jquery.com/position/) is
+   installed, with a few minor modifications. `$().offsetParent()` comes
+   along for the ride too (http://api.jquery.com/offsetParent/).
+
+See
+[base.js](https://github.com/rvagg/ender-bootstrap/blob/master/base/base.js)
+for all the gory details.
+
