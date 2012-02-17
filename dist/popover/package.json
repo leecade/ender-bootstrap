@@ -13,10 +13,10 @@
     "Rod Vagg <@rvagg>"
   ],
   "dependencies": {
-    "ender-bootstrap-base": "0.0.1",
-    "ender-bootstrap-transition": "0.0.1",
-    "ender-bootstrap-tooltip": "0.0.1"
+    "ender-bootstrap-base": "0.0.2",
+    "ender-bootstrap-transition": "0.0.2",
+    "ender-bootstrap-tooltip": "0.0.2"
   },
   "main": "popover.js",
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

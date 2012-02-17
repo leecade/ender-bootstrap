@@ -14,12 +14,12 @@
   ],
   "dependencies": {
     "qwery": "*",
-    "bean": ">= 0.4.9"
+    "bean": ">= 0.4.9",
     "bonzo-rvagg": "*",
     "bowser": "*",
     "domready": "*"
   },
   "main": "base.js",
   "ender": "noop",
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

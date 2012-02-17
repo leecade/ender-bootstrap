@@ -88,7 +88,7 @@
   * =============== */
 
   $.domReady(function () {
-    $('body').on('click.button.data-api', '[data-toggle^=buttons] .btn, [data-toggle=button]', function ( e ) {
+    $('body').on('click.button.data-api', '[data-toggle^=button]', function ( e ) {
       $(e.currentTarget).button('toggle')
     })
   })
