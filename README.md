@@ -75,7 +75,9 @@ specify the required dependencies on the command line when running
 
 If you don't want to roll your own then you can download (or link to) a
 pre-built version which I'll keep updated:
-http://rvagg.github.com/ender-bootstrap/ender-bootstrap.js
+
+ * http://rvagg.github.com/ender-bootstrap/ender-bootstrap.js
+ * http://rvagg.github.com/ender-bootstrap/ender-bootstrap.min.js
 
 This build has all of the Bootstrap plugins installed plus the Ender
 dependencies: Qwery, Bonzo, Bean, domReady and Bowser so you get lots of
