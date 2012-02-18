@@ -64,11 +64,11 @@ specify the required dependencies on the command line when running
 *after* the Ender Bootstrap packages. So install like this:
 
 ```
- $ ender build qwery bonzo bean domready bowser ender-bootstrap-base ender-bootstrap-transition ender-bootstrap-alert
+ $ ender build qwery bonzo-rvagg bean domready bowser ender-bootstrap-base ender-bootstrap-transition ender-bootstrap-alert
 
  # or, for the whole hog
 
- $ ender build qwery bonzo bean domready bowser ender-bootstrap
+ $ ender build qwery bonzo-rvagg bean domready bowser ender-bootstrap
 ```
 
 #### The *easy* way
