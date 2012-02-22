@@ -1,7 +1,7 @@
 {
   "name": "ender-bootstrap-scrollspy",
   "description": "Ender port of Twitter's Bootstrap JS (Scrollspy)",
-  "url": "https://github.com/rvagg/bootstrap",
+  "url": "https://github.com/rvagg/ender-bootstrap",
   "keywords": [
     "twitter",
     "bootstrap",

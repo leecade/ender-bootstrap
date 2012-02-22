@@ -1,7 +1,7 @@
 {
   "name": "ender-bootstrap-modal",
   "description": "Ender port of Twitter's Bootstrap JS (Modal)",
-  "url": "https://github.com/rvagg/bootstrap",
+  "url": "https://github.com/rvagg/ender-bootstrap",
   "keywords": [
     "twitter",
     "bootstrap",

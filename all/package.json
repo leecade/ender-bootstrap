@@ -1,7 +1,7 @@
 {
   "name": "ender-bootstrap",
   "description": "Ender version of Twitter's Bootstrap JS (all plugins)",
-  "url": "https://github.com/rvagg/bootstrap",
+  "url": "https://github.com/rvagg/ender-bootstrap",
   "keywords": [
     "twitter",
     "bootstrap",

@@ -1,7 +1,7 @@
 {
   "name": "ender-bootstrap-collapse",
   "description": "Ender port of Twitter's Bootstrap JS (Collapse)",
-  "url": "https://github.com/rvagg/bootstrap",
+  "url": "https://github.com/rvagg/ender-bootstrap",
   "keywords": [
     "twitter",
     "bootstrap",

@@ -1,7 +1,7 @@
 {
   "name": "ender-bootstrap-popover",
   "description": "Ender port of Twitter's Bootstrap JS (Popover)",
-  "url": "https://github.com/rvagg/bootstrap",
+  "url": "https://github.com/rvagg/ender-bootstrap",
   "keywords": [
     "twitter",
     "bootstrap",
