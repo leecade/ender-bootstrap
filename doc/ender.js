@@ -1,7 +1,7 @@
 /*!
   * =============================================================
   * Ender: open module JavaScript framework (https://ender.no.de)
-  * Build: ender build domready bowser qwery bean bonzo-rvagg
+  * Build: ender build domready bowser qwery bean bonzo
   * =============================================================
   */
 
@@ -94,10 +94,13 @@
 
   var module = { exports: {} }, exports = module.exports;
 
+  /*!
+    * domready (c) Dustin Diaz 2012 - License MIT
+    */
   !function (name, definition) {
-    if (typeof define == 'function') define(definition)
-    else if (typeof module != 'undefined') module.exports = definition()
-    else this[name] = this['domReady'] = definition()
+    if (typeof module != 'undefined') module.exports = definition()
+    else if (typeof define == 'function' && typeof define.amd == 'object') define(definition)
+    else this[name] = definition()
   }('domready', function (ready) {
   
     var fns = [], fn, f = false
@@ -107,7 +110,8 @@
       , domContentLoaded = 'DOMContentLoaded'
       , addEventListener = 'addEventListener'
       , onreadystatechange = 'onreadystatechange'
-      , loaded = /^loade|c/.test(doc.readyState)
+      , readyState = 'readyState'
+      , loaded = /^loade|c/.test(doc[readyState])
   
     function flush(f) {
       loaded = 1
@@ -120,12 +124,12 @@
     }, f)
   
   
-    hack && doc.attachEvent(onreadystatechange, (fn = function () {
-      if (/^c/.test(doc.readyState)) {
+    hack && doc.attachEvent(onreadystatechange, fn = function () {
+      if (/^c/.test(doc[readyState])) {
         doc.detachEvent(onreadystatechange, fn)
         flush()
       }
-    }))
+    })
   
     return (ready = hack ?
       function (fn) {
@@ -1340,7 +1344,7 @@
   var module = { exports: {} }, exports = module.exports;
 
   /*!
-    * Bonzo: DOM Utility (c) Dustin Diaz 2011
+    * Bonzo: DOM Utility (c) Dustin Diaz 2012
     * https://github.com/ded/bonzo
     * License MIT
     */
@@ -1453,7 +1457,7 @@
   
     function dataValue(d, f) {
       try {
-        return (d === null || d === undefined) ? undefined : 
+        return (d === null || d === undefined) ? undefined :
           d === 'true' ? true :
             d === 'false' ? false :
               d === 'null' ? null :
@@ -1520,10 +1524,22 @@
           var n = !el[parentNode] || (el[parentNode] && !el[parentNode][parentNode]) ?
             function () {
               var c = el.cloneNode(true)
+                , cloneElems
+                , elElems
+  
               // check for existence of an event cloner
               // preferably https://github.com/fat/bean
               // otherwise Bonzo won't do this for you
-              self.$ && self.cloneEvents && self.$(c).cloneEvents(el)
+              if (self.$ && self.cloneEvents) {
+                self.$(c).cloneEvents(el)
+  
+                // clone events from every child node
+                cloneElems = self.$(c).find('*')
+                elElems = self.$(el).find('*')
+  
+                for (var i = 0; i < elElems.length; i++)
+                  self.$(cloneElems[i]).cloneEvents(elElems[i])
+              }
               return c
             }() : el
           fn(t, n)
@@ -1560,8 +1576,8 @@
     }
   
     // classList support for class management
-    // altho to be fair, the api sucks because it won't accept multiple classes at once,
-    // so we have to iterate. bullshit
+    // altho to be fair, the api sucks because it won't accept multiple classes at once
+    // so we iterate down below
     if (features.classList) {
       hasClass = function (el, c) {
         return el.classList.contains(c)
@@ -1604,15 +1620,13 @@
             elements :
             [elements]
         this.length = elements.length
-        for (var i = 0; i < elements.length; i++) {
-          this[i] = elements[i]
-        }
+        for (var i = 0; i < elements.length; i++) this[i] = elements[i]
       }
     }
   
     Bonzo.prototype = {
   
-        // indexr method, because jQueriers want this method
+        // indexr method, because jQueriers want this method. Jerks
         get: function (index) {
           return this[index] || null
         }
@@ -1739,6 +1753,7 @@
       , addClass: function (c) {
           c = toString.call(c).split(whitespaceRegex)
           return this.each(function (el) {
+            // we `each` here so you can do $el.addClass('foo bar')
             each(c, function (c) {
               if (c && !hasClass(el, setter(el, c)))
                 addClass(el, setter(el, c))
@@ -1987,7 +2002,7 @@
             o = data(el)
             if (typeof k === 'undefined') {
               each(el.attributes, function(a) {
-                (m = (''+a.name).match(dattr)) && (o[camelize(m[1])] = dataValue(a.value))
+                (m = ('' + a.name).match(dattr)) && (o[camelize(m[1])] = dataValue(a.value))
               })
               return o
             } else {
@@ -2150,15 +2165,14 @@
       }
   
     return bonzo
-  })
+  }); // the only line we care about using a semi-colon. placed here for concatenation tools
   
 
-  provide("bonzo-rvagg", module.exports);
+  provide("bonzo", module.exports);
 
   !function ($) {
   
-    var b = require('bonzo-rvagg')
-    provide('bonzo', b)
+    var b = require('bonzo')
     b.setQueryEngine($)
     $.ender(b)
     $.ender(b(), true)

@@ -20,12 +20,10 @@ minified & gzipped, of a jQuery-based Bootstrap install).
 
 ## Current status
 
-All working but depends on some changes to Bonzo that haven't quite made
-it in yet, so instead you'll have to use the package *bonzo-rvagg* (NPM)
-which is just an updated branch of Bonzo. This is specified as a
-dependency in the base package so will be pulled in each time you `ender
-build`. Differences with the main Bonzo release can be found
-[here](https://github.com/ded/bonzo/pull/50).
+All good except for some bugs from Bootstrap 2.0.1 that we've caried
+over. Radio and checkbox buttons don't work in Bootstrap 2.0.1 but
+they've been patched in the latest release of ender-bootstrap.
+Carousel's still have the same problem that exists in Bootstrap 2.0.1.
 
 ## Using
 
@@ -64,11 +62,11 @@ specify the required dependencies on the command line when running
 *after* the Ender Bootstrap packages. So install like this:
 
 ```
- $ ender build qwery bonzo-rvagg bean domready bowser ender-bootstrap-base ender-bootstrap-transition ender-bootstrap-alert
+ $ ender build qwery bonzo bean domready bowser ender-bootstrap-base ender-bootstrap-transition ender-bootstrap-alert
 
  # or, for the whole hog
 
- $ ender build qwery bonzo-rvagg bean domready bowser ender-bootstrap
+ $ ender build qwery bonzo bean domready bowser ender-bootstrap
 ```
 
 #### The *easy* way
