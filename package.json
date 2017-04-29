@@ -10,7 +10,7 @@
       , "url": "https://github.com/rvagg/ender-bootstrap.git"
     }
   , "devDependencies": {
-        "async": "*"
+        "async": ">=2.4.0"
       , "colors": "*"
     }
 }
