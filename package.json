@@ -11,6 +11,6 @@
     }
   , "devDependencies": {
         "async": "*"
-      , "colors": "*"
+      , "colors": ">=1.2.3"
     }
 }
